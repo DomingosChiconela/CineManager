@@ -1,0 +1,147 @@
+{% extends 'bases/base_cinema.html' %}
+{% load static %}
+{% block 'head' %}{% endblock %}
+<title>{% block 'title' %} Dashboard_empresa{% endblock %}</title>
+
+<style>
+    #main {
+       
+        margin-top:0; 
+        margin-right:0;
+        overflow:auto;
+        position:relative;
+
+    }
+    
+    
+</style>
+{% block 'body' %}  
+{% if messages %}
+
+        {% for message in messages %}
+            <div id="mensagem-container" class="alert {{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    
+    <script> setTimeout(function(){
+        var mensagemContainer = document.getElementById('mensagem-container');
+        if (mensagemContainer) {
+            mensagemContainer.style.display="none"; 
+        }
+    },3000);</script>
+{% endif %}
+
+
+
+
+
+<div class="cont-dash-1">
+    <div class="inser-mes" style="flex: 30%;">
+        <canvas id="mes" style="width: 30vh;     height:20vh "></canvas>
+    </div>
+    
+    <div class="quanto-sexo" style="flex: 20%;">
+        <canvas id="sexo" style="width: 30vh;  height:20vh ;margin-left:40px" ></canvas>
+
+    </div>
+
+    <div class="numerodado"  style="flex:15%;text-align: left;
+   " >
+   <a href="#" > <span > Total cartazes: {{total_cartaz}}  </span> </a>
+   <a href="#" > <span > Total filme: {{total_filme}}  </span> </a>
+
+    <a href="#"> <span style="padding-top: 0;margin-top: 0;">Total sessoes: {{ total_sessao}} </span></a>
+    </div>
+    </div>
+    <div class="cont-dash-2">
+      
+    <div class="indice-idade">
+        <canvas id="idade" style="width: 28vh;  height:19vh"></canvas>
+    </div>
+       
+    <div class="quanti-dados " >
+        <canvas id="total-dados" style="width: 26vh;  height:19vh"></canvas>
+    </div>
+    
+    
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
+        
+    <script>
+        
+          let ctx = document.getElementById("mes");
+      
+          new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels:{{labels|safe}},
+              datasets: [{
+                label: '# cartaz por mês',
+                data:{{values|safe}},
+                borderWidth: 1
+              }]
+            },
+            options: {
+              animation: {
+                duration: 5000,
+              },
+              scales: {
+                y: {
+                 
+                  display: true, // Remover a grade no eixo Y
+                },
+                x: {
+                
+                  display: true , // Remover a grade no eixo X
+                },
+              },
+              layout: {
+                padding: {
+                  left: 40
+                }
+              },
+              legend: {
+                position: "bottom",
+                display: false
+              },
+              title: {
+                display: true,
+                text: 'Custom Chart Title'
+              },
+              responsive: true
+            }
+          });
+        
+        
+          {
+            let ctx=document.getElementById("sexo")
+            
+            var sexo= new Chart(ctx, {
+              type: 'pie',
+              data: {
+                labels: {{label_categoria|safe}},
+                datasets: [{
+                  label: '#Quantidade filme por categoria',
+                  data: {{value_categoria|safe}},
+                  borderWidth: 1
+                }]
+              },
+              options: {
+                scales: {
+                  y: {
+                    beginAtZero: true
+                  }
+                },
+                responsive:true 
+              }
+            });}  
+          
+          
+      </script>
+ 
+{% endblock %}
