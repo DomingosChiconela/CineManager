@@ -5,6 +5,7 @@
  #Technology
  CineManager is developed using Django, a high-level Python web framework that enables rapid development of secure and maintainable websites. Django simplifies many aspects of web development by providing built-in solutions for common tasks, such as database management, user authentication, and URL routing. It encourages the use of best practices and follows the "batteries-included" philosophy, offering a comprehensive set of tools and features right out of the box.
 For more information about Django, please refer to the official documentation: [Django Documentation](https://docs.djangoproject.com/en/5.1/).
+
 Django follows the principle of "divide and conquer," which means breaking down a complex problem into smaller, manageable pieces called apps. Each app is designed to handle a specific aspect of the project, allowing for modular development and easier maintenance
 
 CineManager consists of the following 4 apps:
@@ -19,13 +20,22 @@ Cliente: Covers all logic related to the client, such as interacting with the sy
 
 
 media -  Responsible for storing media files, including profiles, movie images, posters, etc.
+
 template - Contains static files (HTML, CSS, JS) used to render the user interface."
 
 
-#como instalar 
+#How to Install?
 
-1 clone o repositorio com com git clone 
+1-Clone the repository with the command:  
 
+git clone git@github.com:DomingosChiconela/CineManager.git 
+
+2-Navigate to the project directory that was created.
+3Configure the database to persist data. To do this, locate and edit the settings.py file.
+4 In the terminal, run the following commands to create and apply the database migrations: 
+python manage.py makemigrations  
+python manage.py migrate
+5- Start the development server with the command: o python manage.py runserver
 
 
 
